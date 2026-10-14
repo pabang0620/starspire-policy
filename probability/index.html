@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>캐릿터 키우기 확률 정보</title>
+<style>
+  body { margin: 0; background: #fff; color: #222; font: 16px/1.7 -apple-system, "Segoe UI", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.5rem; margin: 0 0 8px; }
+  h2 { font-size: 1.35rem; margin: 48px 0 8px; padding-top: 16px; border-top: 2px solid #999; }
+  h3 { font-size: 1.15rem; margin: 28px 0 8px; }
+  h4 { font-size: 1rem; margin: 20px 0 6px; }
+  p, li { word-break: keep-all; overflow-wrap: anywhere; }
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.92rem; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #f3f3f3; }
+</style>
+</head>
+<body>
+<main>
+<h1>캐릿터 키우기 확률 정보</h1>
+<p>게임 안 '확률 정보' 화면과 실제 추첨이 쓰는 값과 같습니다. 소환, 스킨 상자, 오라 소환 순서입니다.</p>
+<h2>별의 소환 확률 정보</h2>
+<p>이 문서는 게임 코드가 소환 데이터(gacha.json)·아이템 데이터(items.json)·직업 데이터(classes.json)·상점 데이터(shop.json)로 만든 것이며, 게임 안 '확률 정보' 화면과 실제 추첨이 쓰는 값과 같습니다.</p>
+<h3>비용</h3>
+<ul>
+<li>1회: 30 별조각</li>
+<li>10회: 270 별조각 (1회 10번 300 별조각보다 10% 할인)</li>
+</ul>
+<h3>등급별 확률</h3>
+<p>등급 확률은 모든 직업이 같습니다(1회 소환 기준).</p>
+<div class="table-wrap"><table>
+<tr><th>등급</th><th>확률</th></tr>
+<tr><td>고급</td><td>60%</td></tr>
+<tr><td>희귀</td><td>30%</td></tr>
+<tr><td>영웅</td><td>8.5%</td></tr>
+<tr><td>전설</td><td>1.5%</td></tr>
+<tr><td>합계</td><td>100%</td></tr>
+</table></div>
+<h3>천장 포함 실효 확률</h3>
+<ul>
+<li>전설 등급 표시 확률(1회 소환): 1.5%</li>
+<li>천장(60번째 소환 확정)을 포함한 전설 1개당 평균 소환 수: 36.77회 (1회 소환 기준 약 1,103 별조각, 10회 소환 기준 약 993 별조각)</li>
+<li>천장을 포함한 전설 실효 확률: 2.7196%</li>
+<li>계산: 평균 소환 수 = 1회차부터 60회차까지 '그 회차 전까지 전설 등급이 한 번도 안 나왔을 확률'의 합(회차별 확률은 아래 표). 실효 확률 = 1 / 평균 소환 수.</li>
+<li>10회 보장(영웅 등급)은 전설 확률을 바꾸지 않습니다.</li>
+<li>이와 별도로 소환 100회마다 별의 인장 100개로 원하는 부위의 전설 장비 1개를 교환할 수 있습니다(추첨 아님).</li>
+</ul>
+<h3>회차별 전설 확률</h3>
+<p>마지막 전설 등급 뒤 몇 번째 소환인지에 따른 전설 확률입니다. 표에 없는 회차는 표시 확률과 같습니다.</p>
+<div class="table-wrap"><table>
+<tr><th>회차</th><th>전설 확률</th></tr>
+<tr><td>1~49</td><td>1.5%</td></tr>
+<tr><td>50</td><td>9.5%</td></tr>
+<tr><td>51</td><td>17.5%</td></tr>
+<tr><td>52</td><td>25.5%</td></tr>
+<tr><td>53</td><td>33.5%</td></tr>
+<tr><td>54</td><td>41.5%</td></tr>
+<tr><td>55</td><td>49.5%</td></tr>
+<tr><td>56</td><td>57.5%</td></tr>
+<tr><td>57</td><td>65.5%</td></tr>
+<tr><td>58</td><td>73.5%</td></tr>
+<tr><td>59</td><td>81.5%</td></tr>
+<tr><td>60</td><td>100%</td></tr>
+</table></div>
+<h3>목표별 소환 횟수</h3>
+<p>천장 횟수와 인장이 0인 상태에서 시작했을 때 목표를 얻기까지의 소환 횟수입니다(정확 계산). '95%'는 100명 중 95명이 그 횟수 안에 얻는다는 뜻입니다. 별조각은 10회 소환 단가 기준입니다.</p>
+<div class="table-wrap"><table>
+<tr><th>목표</th><th>1회 확률</th><th>평균</th><th>중앙값</th><th>95%</th><th>최대</th><th>평균 별조각</th></tr>
+<tr><td>아무 전설 장비</td><td>1.5%</td><td>36.77회</td><td>46회</td><td>56회</td><td>60회</td><td>993</td></tr>
+<tr><td>원하는 전설 장비 1개(이번 주 픽업 부위)</td><td>0.875%</td><td>55.36회</td><td>53회</td><td>100회</td><td>100회</td><td>1,495</td></tr>
+<tr><td>원하는 전설 장비 1개(그 밖의 부위)</td><td>0.25%</td><td>84.32회</td><td>100회</td><td>100회</td><td>100회</td><td>2,277</td></tr>
+</table></div>
+<ul>
+<li>원하는 장비의 최대 횟수는 별의 인장 교환 때문에 정해집니다. 중복 보너스 인장은 계산에 넣지 않았습니다(받으면 더 짧아집니다).</li>
+<li>모든 직업의 소환 장비 종류 수가 같아 직업과 상관없이 같은 값입니다.</li>
+</ul>
+<h3>아이템별 확률: 무기 소환 · 기사</h3>
+<p>무기 소환 · 기사 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 1종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 1.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 롱소드</td><td>무기</td><td>기사</td><td>60%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 롱소드</td><td>무기</td><td>기사</td><td>30%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 롱소드</td><td>무기</td><td>기사</td><td>8.5%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 롱소드</td><td>무기</td><td>기사</td><td>1.5%</td></tr>
+</table></div>
+<h3>아이템별 확률: 무기 소환 · 마법사</h3>
+<p>무기 소환 · 마법사 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 1종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 1.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 수정 지팡이</td><td>무기</td><td>마법사</td><td>60%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 수정 지팡이</td><td>무기</td><td>마법사</td><td>30%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 수정 지팡이</td><td>무기</td><td>마법사</td><td>8.5%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 수정 지팡이</td><td>무기</td><td>마법사</td><td>1.5%</td></tr>
+</table></div>
+<h3>아이템별 확률: 무기 소환 · 궁수</h3>
+<p>무기 소환 · 궁수 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 1종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 1.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 장궁</td><td>무기</td><td>궁수</td><td>60%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 장궁</td><td>무기</td><td>궁수</td><td>30%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 장궁</td><td>무기</td><td>궁수</td><td>8.5%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 장궁</td><td>무기</td><td>궁수</td><td>1.5%</td></tr>
+</table></div>
+<h3>아이템별 확률: 방어구 소환 · 기사</h3>
+<p>방어구 소환 · 기사 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 3종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 3.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 투구</td><td>투구</td><td>공용</td><td>20%</td></tr>
+<tr><td>단단한 판금 갑옷</td><td>갑옷</td><td>공용</td><td>20%</td></tr>
+<tr><td>단단한 가죽 장화</td><td>장화</td><td>공용</td><td>20%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 투구</td><td>투구</td><td>공용</td><td>10%</td></tr>
+<tr><td>정교한 판금 갑옷</td><td>갑옷</td><td>공용</td><td>10%</td></tr>
+<tr><td>정교한 가죽 장화</td><td>장화</td><td>공용</td><td>10%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 투구</td><td>투구</td><td>공용</td><td>2.8333%</td></tr>
+<tr><td>영웅의 판금 갑옷</td><td>갑옷</td><td>공용</td><td>2.8333%</td></tr>
+<tr><td>영웅의 가죽 장화</td><td>장화</td><td>공용</td><td>2.8333%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 투구</td><td>투구</td><td>공용</td><td>0.5%</td></tr>
+<tr><td>성탑의 판금 갑옷</td><td>갑옷</td><td>공용</td><td>0.5%</td></tr>
+<tr><td>성탑의 가죽 장화</td><td>장화</td><td>공용</td><td>0.5%</td></tr>
+</table></div>
+<h3>아이템별 확률: 방어구 소환 · 마법사</h3>
+<p>방어구 소환 · 마법사 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 3종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 3.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 투구</td><td>투구</td><td>공용</td><td>20%</td></tr>
+<tr><td>단단한 판금 갑옷</td><td>갑옷</td><td>공용</td><td>20%</td></tr>
+<tr><td>단단한 가죽 장화</td><td>장화</td><td>공용</td><td>20%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 투구</td><td>투구</td><td>공용</td><td>10%</td></tr>
+<tr><td>정교한 판금 갑옷</td><td>갑옷</td><td>공용</td><td>10%</td></tr>
+<tr><td>정교한 가죽 장화</td><td>장화</td><td>공용</td><td>10%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 투구</td><td>투구</td><td>공용</td><td>2.8333%</td></tr>
+<tr><td>영웅의 판금 갑옷</td><td>갑옷</td><td>공용</td><td>2.8333%</td></tr>
+<tr><td>영웅의 가죽 장화</td><td>장화</td><td>공용</td><td>2.8333%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 투구</td><td>투구</td><td>공용</td><td>0.5%</td></tr>
+<tr><td>성탑의 판금 갑옷</td><td>갑옷</td><td>공용</td><td>0.5%</td></tr>
+<tr><td>성탑의 가죽 장화</td><td>장화</td><td>공용</td><td>0.5%</td></tr>
+</table></div>
+<h3>아이템별 확률: 방어구 소환 · 궁수</h3>
+<p>방어구 소환 · 궁수 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 3종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 3.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 투구</td><td>투구</td><td>공용</td><td>20%</td></tr>
+<tr><td>단단한 판금 갑옷</td><td>갑옷</td><td>공용</td><td>20%</td></tr>
+<tr><td>단단한 가죽 장화</td><td>장화</td><td>공용</td><td>20%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 투구</td><td>투구</td><td>공용</td><td>10%</td></tr>
+<tr><td>정교한 판금 갑옷</td><td>갑옷</td><td>공용</td><td>10%</td></tr>
+<tr><td>정교한 가죽 장화</td><td>장화</td><td>공용</td><td>10%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 투구</td><td>투구</td><td>공용</td><td>2.8333%</td></tr>
+<tr><td>영웅의 판금 갑옷</td><td>갑옷</td><td>공용</td><td>2.8333%</td></tr>
+<tr><td>영웅의 가죽 장화</td><td>장화</td><td>공용</td><td>2.8333%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 투구</td><td>투구</td><td>공용</td><td>0.5%</td></tr>
+<tr><td>성탑의 판금 갑옷</td><td>갑옷</td><td>공용</td><td>0.5%</td></tr>
+<tr><td>성탑의 가죽 장화</td><td>장화</td><td>공용</td><td>0.5%</td></tr>
+</table></div>
+<h3>아이템별 확률: 장신구 소환 · 기사</h3>
+<p>장신구 소환 · 기사 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 2종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 2.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 반지</td><td>반지</td><td>공용</td><td>30%</td></tr>
+<tr><td>단단한 목걸이</td><td>목걸이</td><td>공용</td><td>30%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 반지</td><td>반지</td><td>공용</td><td>15%</td></tr>
+<tr><td>정교한 목걸이</td><td>목걸이</td><td>공용</td><td>15%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 반지</td><td>반지</td><td>공용</td><td>4.25%</td></tr>
+<tr><td>영웅의 목걸이</td><td>목걸이</td><td>공용</td><td>4.25%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 반지</td><td>반지</td><td>공용</td><td>0.75%</td></tr>
+<tr><td>성탑의 목걸이</td><td>목걸이</td><td>공용</td><td>0.75%</td></tr>
+</table></div>
+<h3>아이템별 확률: 장신구 소환 · 마법사</h3>
+<p>장신구 소환 · 마법사 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 2종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 2.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 반지</td><td>반지</td><td>공용</td><td>30%</td></tr>
+<tr><td>단단한 목걸이</td><td>목걸이</td><td>공용</td><td>30%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 반지</td><td>반지</td><td>공용</td><td>15%</td></tr>
+<tr><td>정교한 목걸이</td><td>목걸이</td><td>공용</td><td>15%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 반지</td><td>반지</td><td>공용</td><td>4.25%</td></tr>
+<tr><td>영웅의 목걸이</td><td>목걸이</td><td>공용</td><td>4.25%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 반지</td><td>반지</td><td>공용</td><td>0.75%</td></tr>
+<tr><td>성탑의 목걸이</td><td>목걸이</td><td>공용</td><td>0.75%</td></tr>
+</table></div>
+<h3>아이템별 확률: 장신구 소환 · 궁수</h3>
+<p>장신구 소환 · 궁수 캐릭터의 소환: 등급이 정해진 뒤 기본 아이템 2종 중 하나가 같은 확률로 정해집니다. 아이템별 확률 = 등급 확률 / 2.</p>
+<h4>고급 (60%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>단단한 반지</td><td>반지</td><td>공용</td><td>30%</td></tr>
+<tr><td>단단한 목걸이</td><td>목걸이</td><td>공용</td><td>30%</td></tr>
+</table></div>
+<h4>희귀 (30%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>정교한 반지</td><td>반지</td><td>공용</td><td>15%</td></tr>
+<tr><td>정교한 목걸이</td><td>목걸이</td><td>공용</td><td>15%</td></tr>
+</table></div>
+<h4>영웅 (8.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>영웅의 반지</td><td>반지</td><td>공용</td><td>4.25%</td></tr>
+<tr><td>영웅의 목걸이</td><td>목걸이</td><td>공용</td><td>4.25%</td></tr>
+</table></div>
+<h4>전설 (1.5%)</h4>
+<div class="table-wrap"><table>
+<tr><th>아이템</th><th>부위</th><th>직업</th><th>확률</th></tr>
+<tr><td>성탑의 반지</td><td>반지</td><td>공용</td><td>0.75%</td></tr>
+<tr><td>성탑의 목걸이</td><td>목걸이</td><td>공용</td><td>0.75%</td></tr>
+</table></div>
+<h3>소환 규칙</h3>
+<ul>
+<li>비용: 1회 30 별조각, 10회 270 별조각(1회 10번 300 별조각보다 10% 할인).</li>
+<li>결과는 장비 1개입니다. 기사 캐릭터로 소환하면 기사 전용 무기 롱소드 1종과 공용 장비 5종(투구, 판금 갑옷, 가죽 장화, 반지, 목걸이), 총 6종 중 하나가 같은 확률로 나오며 다른 직업의 무기는 나오지 않습니다.</li>
+<li>결과는 장비 1개입니다. 마법사 캐릭터로 소환하면 마법사 전용 무기 수정 지팡이 1종과 공용 장비 5종(투구, 판금 갑옷, 가죽 장화, 반지, 목걸이), 총 6종 중 하나가 같은 확률로 나오며 다른 직업의 무기는 나오지 않습니다.</li>
+<li>결과는 장비 1개입니다. 궁수 캐릭터로 소환하면 궁수 전용 무기 장궁 1종과 공용 장비 5종(투구, 판금 갑옷, 가죽 장화, 반지, 목걸이), 총 6종 중 하나가 같은 확률로 나오며 다른 직업의 무기는 나오지 않습니다.</li>
+<li>아이템 레벨은 캐릭터 레벨 + 2입니다(최대 60).</li>
+<li>10회 소환에서 영웅 등급 이상이 하나도 나오지 않으면 마지막 1개를 영웅 등급으로 올립니다.</li>
+<li>전설 등급 없이 59회 소환하면 60번째 소환은 전설 등급이 확정됩니다. 천장 횟수는 모든 캐릭터가 함께 쓰며, 전설 등급이 나오면 0부터 다시 셉니다.</li>
+<li>소프트 천장: 전설 등급 없이 50번째 소환부터 전설 확률이 회당 8%p씩 오릅니다(50번째 9.5%, 59번째 81.5%). 60번째는 확정입니다. 오른 확률만큼 다른 등급의 확률이 같은 비율로 줄어듭니다.</li>
+<li>천장을 포함하면 전설 등급 1개를 얻기까지 평균 36.77회 소환하며, 1회당 실효 확률은 2.7196%입니다.</li>
+<li>소환 1회마다 별의 인장 1개를 얻습니다. 인장 100개로 원하는 부위의 전설 장비 1개(교환하는 캐릭터의 직업 장비, 아이템 레벨은 소환과 같음)와 교환할 수 있습니다. 인장은 모든 캐릭터가 함께 쓰며, 교환은 천장 횟수에 영향을 주지 않습니다.</li>
+<li>픽업: 주마다 부위 하나가 픽업입니다(무기, 갑옷, 투구, 장화, 반지, 목걸이 순서, 미션 주간 초기화 시각에 바뀜). 전설 등급이 나오면 50% 확률로 이번 주 픽업 부위가 나오고, 나머지 50%는 위 장비 중 하나가 같은 확률로 나옵니다(픽업 부위 포함). 전설 등급 확률 자체는 바뀌지 않습니다.</li>
+<li>중복 보너스: 전설 등급이 나왔을 때 소환한 캐릭터가 같은 부위의 신화 장비(아이템 레벨이 같거나 높음)를 이미 가지고 있으면 별의 인장 10개를 더 받습니다. 전설 등급 확률은 바뀌지 않습니다.</li>
+<li>등급별 확률은 1회 소환 기준이며 모든 직업이 같습니다. 보장·천장·인장 교환·픽업은 위 규칙으로만 적용됩니다.</li>
+</ul>
+<h3>부옵션</h3>
+<p>소환한 장비에는 등급에 따라 부옵션이 붙습니다: 고급 1개, 희귀 1개, 영웅 2개, 전설 3개. 부옵션 종류는 다음 7종 중 서로 다른 종류가 같은 확률로 정해지고, 수치는 범위 안에서 고르게 정해집니다.</p>
+<div class="table-wrap"><table>
+<tr><th>부옵션</th><th>최소</th><th>최대</th></tr>
+<tr><td>공격력%</td><td>2%</td><td>5%</td></tr>
+<tr><td>체력%</td><td>3%</td><td>6%</td></tr>
+<tr><td>방어력%</td><td>3%</td><td>6%</td></tr>
+<tr><td>치명타 확률</td><td>1.5%</td><td>3.5%</td></tr>
+<tr><td>치명타 피해</td><td>5%</td><td>12%</td></tr>
+<tr><td>공격 속도</td><td>3%</td><td>7%</td></tr>
+<tr><td>쿨타임 감소</td><td>2%</td><td>5%</td></tr>
+</table></div>
+<h3>유료 별조각 팩</h3>
+<div class="table-wrap"><table>
+<tr><th>이름</th><th>별조각</th></tr>
+<tr><td>별조각 120</td><td>120</td></tr>
+<tr><td>별조각 600</td><td>600</td></tr>
+<tr><td>별조각 1,300</td><td>1,300</td></tr>
+<tr><td>별조각 2,800</td><td>2,800</td></tr>
+<tr><td>별의 여정 프리미엄 (별조각 100 포함)</td><td>100</td></tr>
+<tr><td>성장 지원 패키지 (별조각 1,500)</td><td>1,500</td></tr>
+<tr><td>캐릭터 슬롯 확장 (별조각 100 포함)</td><td>100</td></tr>
+<tr><td>레벨 패스 (별조각 100 포함)</td><td>100</td></tr>
+<tr><td>레벨 패스 추가 캐릭터 할인 (별조각 100 포함)</td><td>100</td></tr>
+<tr><td>가을 별빛 축제 패키지 (별조각 2,800 포함)</td><td>2,800</td></tr>
+</table></div>
+<ul>
+<li>실제 가격은 Steam이 지역 통화로 표시합니다.</li>
+<li>벨기에(BE), 네덜란드(NL)에서는 유료 별조각을 판매하지 않습니다.</li>
+</ul>
+<h3>변경 이력</h3>
+<ul>
+<li>데이터 버전 2026.10.5, 시행일 2026-10-05</li>
+<li>2026-10-03: 소프트 천장 도입(전설 없이 50번째 소환부터 전설 확률이 회당 8%p씩 오름). 기존 확률과 60회 천장, 인장 교환은 그대로입니다.</li>
+<li>2026-10-03: 중복 보너스 인장 10개 추가. 같은 부위 신화 장비가 있을 때 나온 전설에 적용합니다(그 전의 전설은 신화 승급 재료).</li>
+<li>2026-10-05: 소환을 무기·방어구·장신구 세 가지로 나눴습니다. 등급 확률, 60회 천장, 10회 보장, 인장은 세 소환이 함께 씁니다.</li>
+<li>확률이나 규칙을 바꿀 때는 시행 전에 게임 안 소환 화면과 이 문서에 알립니다.</li>
+</ul>
+<h2>스킨 상자 확률 정보</h2>
+<p>스킨 상자 1개를 열면 아래 스킨 중 1개가 나온다. 같은 등급 안에서는 모두 같은 확률이다. 착용한 스킨은 등급에 따라 옵션이 붙는다. 캐릭터 스킨은 헤어·얼굴·의상·무기가 모두 바뀌고, 전설 캐릭터 스킨은 걸을 때 색 잔상이 남는다. 일반 스킨은 기본 외형의 색·머리색을 바꾼 것이다. 스킨과 상자는 거래하거나 장터에 팔 수 없다.</p>
+<p>획득 경로: 게임 안 유료 구매(Steam 결제), 별의 증표 확정 교환(플레이 3시간마다 1개, 주 최대 5개). 벨기에·네덜란드에서는 유료 구매를 제공하지 않는다.</p>
+<div class="table-wrap"><table>
+<tr><th>등급</th><th>등급 확률</th><th>스킨</th><th>직업</th><th>종류</th><th>옵션</th><th>개별 확률</th></tr>
+<tr><td>전설</td><td>0.5%</td><td>천공의 성검사</td><td>기사</td><td>캐릭터</td><td>HP·공격력·방어력 +5%</td><td>0.1667%</td></tr>
+<tr><td>전설</td><td>0.5%</td><td>황금 태양의 대현자</td><td>마법사</td><td>캐릭터</td><td>HP·공격력·방어력 +5%</td><td>0.1667%</td></tr>
+<tr><td>전설</td><td>0.5%</td><td>세계수의 수호자</td><td>궁수</td><td>캐릭터</td><td>HP·공격력·방어력 +5%</td><td>0.1667%</td></tr>
+<tr><td>영웅</td><td>3%</td><td>은빛 기사단장</td><td>기사</td><td>캐릭터</td><td>HP·공격력·방어력 +3%</td><td>0.5%</td></tr>
+<tr><td>영웅</td><td>3%</td><td>적염 용병</td><td>기사</td><td>캐릭터</td><td>HP·공격력·방어력 +3%</td><td>0.5%</td></tr>
+<tr><td>영웅</td><td>3%</td><td>물결의 마녀</td><td>마법사</td><td>캐릭터</td><td>HP·공격력·방어력 +3%</td><td>0.5%</td></tr>
+<tr><td>영웅</td><td>3%</td><td>별자리 점성술사</td><td>마법사</td><td>캐릭터</td><td>HP·공격력·방어력 +3%</td><td>0.5%</td></tr>
+<tr><td>영웅</td><td>3%</td><td>설원의 여우 궁수</td><td>궁수</td><td>캐릭터</td><td>HP·공격력·방어력 +3%</td><td>0.5%</td></tr>
+<tr><td>영웅</td><td>3%</td><td>흑요 사냥꾼</td><td>궁수</td><td>캐릭터</td><td>HP·공격력·방어력 +3%</td><td>0.5%</td></tr>
+<tr><td>희귀</td><td>13.98%</td><td>흑요 기사</td><td>기사</td><td>의상</td><td>HP·방어력 +2%</td><td>2.33%</td></tr>
+<tr><td>희귀</td><td>13.98%</td><td>여명의 성기사</td><td>기사</td><td>의상</td><td>HP·방어력 +2%</td><td>2.33%</td></tr>
+<tr><td>희귀</td><td>13.98%</td><td>홍련 술사</td><td>마법사</td><td>의상</td><td>HP·방어력 +2%</td><td>2.33%</td></tr>
+<tr><td>희귀</td><td>13.98%</td><td>서리 여왕</td><td>마법사</td><td>의상</td><td>HP·방어력 +2%</td><td>2.33%</td></tr>
+<tr><td>희귀</td><td>13.98%</td><td>서리 사냥꾼</td><td>궁수</td><td>의상</td><td>HP·방어력 +2%</td><td>2.33%</td></tr>
+<tr><td>희귀</td><td>13.98%</td><td>밤그림자</td><td>궁수</td><td>의상</td><td>HP·방어력 +2%</td><td>2.33%</td></tr>
+<tr><td>고급</td><td>30%</td><td>홍염의 검</td><td>기사</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>서리송곳</td><td>기사</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>성휘 대검</td><td>기사</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>수정 지팡이</td><td>마법사</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>용혼 지팡이</td><td>마법사</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>별바다 지팡이</td><td>마법사</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>바람결 활</td><td>궁수</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>화염 장궁</td><td>궁수</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>고급</td><td>30%</td><td>별빛 활</td><td>궁수</td><td>무기</td><td>공격력 +1%</td><td>3.3333%</td></tr>
+<tr><td>일반</td><td>52.52%</td><td>보랏빛 기사</td><td>기사</td><td>의상</td><td>HP·방어력 +0.5%</td><td>8.7533%</td></tr>
+<tr><td>일반</td><td>52.52%</td><td>신록 기사</td><td>기사</td><td>의상</td><td>HP·방어력 +0.5%</td><td>8.7533%</td></tr>
+<tr><td>일반</td><td>52.52%</td><td>진홍 술사</td><td>마법사</td><td>의상</td><td>HP·방어력 +0.5%</td><td>8.7533%</td></tr>
+<tr><td>일반</td><td>52.52%</td><td>비취 술사</td><td>마법사</td><td>의상</td><td>HP·방어력 +0.5%</td><td>8.7533%</td></tr>
+<tr><td>일반</td><td>52.52%</td><td>단풍 궁수</td><td>궁수</td><td>의상</td><td>HP·방어력 +0.5%</td><td>8.7533%</td></tr>
+<tr><td>일반</td><td>52.52%</td><td>청람 궁수</td><td>궁수</td><td>의상</td><td>HP·방어력 +0.5%</td><td>8.7533%</td></tr>
+</table></div>
+<h3>스킨 합성 확률</h3>
+<p>같은 등급 스킨 4개를 넣으면 아래 확률로 한 등급 위 스킨 1개가 나옵니다. 실패하면 같은 등급 스킨 1개(그 등급 전체에서 균등)를 돌려받습니다. 결과 스킨은 스킨 상자판이며 거래하거나 장터에 팔 수 없습니다. 합성에는 별도 비용이 없습니다.</p>
+<div class="table-wrap"><table>
+<tr><th>재료</th><th>성공 시 결과</th><th>성공 확률</th><th>실패 시</th></tr>
+<tr><td>일반 4개</td><td>고급 무기 스킨 9종 중 1개 (각 5.5556%)</td><td>50%</td><td>일반 1개 (각 8.3333%)</td></tr>
+<tr><td>고급 4개</td><td>희귀 의상 스킨 6종 중 1개 (각 4.1667%)</td><td>25%</td><td>고급 1개 (각 8.3333%)</td></tr>
+<tr><td>희귀 4개</td><td>고른 직업의 영웅 스킨 2종 중 1개 (각 5%)</td><td>10%</td><td>희귀 1개 (각 15%) + 영웅 합성 조각 1개</td></tr>
+<tr><td>영웅 4개</td><td>고른 직업의 전설 스킨 1종</td><td>3%</td><td>영웅 1개 (각 16.1667%) + 전설 합성 조각 1개</td></tr>
+</table></div>
+<p>천장(확정 교환): 영웅 합성 조각 15개로 고른 직업의 영웅 스킨 1개(스킨 2종 중 각 50%), 전설 합성 조각 10개로 고른 직업의 전설 스킨 1개(확정)를 받습니다. 조각은 거래하거나 장터에 팔 수 없습니다.</p>
+<h2>오라 소환 확률 정보</h2>
+<p>오라 소환은 별조각으로 오라를 얻는 확률형 상품이다. 1회 별조각 100개, 10+1회 별조각 1000개(11개). 등급을 먼저 정하고, 같은 등급 안에서는 모두 같은 확률이다. 오라를 두르면 공격력이 오른다(일반 1%, 희귀 2%, 영웅 3%, 하나만 착용). 오라는 계정의 모든 캐릭터가 함께 쓰고 거래할 수 없다.</p>
+<p>선택 게이지: 오라 1개를 얻을 때마다 1칸 오르고, 50칸이 차면 영웅 오라 중 하나를 직접 고른다(남은 칸은 다음으로 이월).</p>
+<p>확정 교환: 원하는 오라를 일반 300 · 희귀 1000 · 영웅 3000 별조각에 받는다. 이미 가진 오라를 다시 얻으면 여분이 되고, 여분은 일반 20 · 희귀 50 · 영웅 300 무료 별조각으로 분해할 수 있다.</p>
+<div class="table-wrap"><table>
+<tr><th>등급</th><th>등급 확률</th><th>오라</th><th>착용 효과</th><th>개별 확률</th></tr>
+<tr><td>영웅</td><td>1%</td><td>오로라</td><td>공격력 +3%</td><td>0.3333%</td></tr>
+<tr><td>영웅</td><td>1%</td><td>태양의 왕관</td><td>공격력 +3%</td><td>0.3333%</td></tr>
+<tr><td>영웅</td><td>1%</td><td>심연의 날개</td><td>공격력 +3%</td><td>0.3333%</td></tr>
+<tr><td>희귀</td><td>18%</td><td>서리꽃</td><td>공격력 +2%</td><td>3.6%</td></tr>
+<tr><td>희귀</td><td>18%</td><td>홍염</td><td>공격력 +2%</td><td>3.6%</td></tr>
+<tr><td>희귀</td><td>18%</td><td>은하 먼지</td><td>공격력 +2%</td><td>3.6%</td></tr>
+<tr><td>희귀</td><td>18%</td><td>심해</td><td>공격력 +2%</td><td>3.6%</td></tr>
+<tr><td>희귀</td><td>18%</td><td>폭풍전야</td><td>공격력 +2%</td><td>3.6%</td></tr>
+<tr><td>일반</td><td>81%</td><td>새벽 안개</td><td>공격력 +1%</td><td>16.2%</td></tr>
+<tr><td>일반</td><td>81%</td><td>숲의 숨결</td><td>공격력 +1%</td><td>16.2%</td></tr>
+<tr><td>일반</td><td>81%</td><td>잔물결</td><td>공격력 +1%</td><td>16.2%</td></tr>
+<tr><td>일반</td><td>81%</td><td>모닥불</td><td>공격력 +1%</td><td>16.2%</td></tr>
+<tr><td>일반</td><td>81%</td><td>달무리</td><td>공격력 +1%</td><td>16.2%</td></tr>
+</table></div>
+</main>
+</body>
+</html>
